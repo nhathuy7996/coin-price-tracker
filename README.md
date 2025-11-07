@@ -31,6 +31,7 @@
 
 ### For Users (Installation)
 
+#### macOS
 1. Download the appropriate DMG file:
    - **[Download for Apple Silicon (M1/M2/M3/M4)](https://github.com/nhathuy7996/coin-price-tracker/releases/tag/macOS-silicon)** - `Coin Price Tracker-1.0.0-arm64.dmg`
    - **[Download for Intel Macs](https://github.com/nhathuy7996/coin-price-tracker/releases/tag/macos-intel)** - `Coin Price Tracker-1.0.0.dmg`
@@ -38,6 +39,15 @@
 2. Open the DMG and drag the app to Applications
 
 3. Launch the app (see [INSTALL.md](INSTALL.md) for security notes)
+
+#### Windows
+1. **[Download for Windows](https://github.com/nhathuy7996/coin-price-tracker/releases/tag/windows)**
+   - `Coin Price Tracker Setup 1.0.0.exe` - Installer (recommended)
+   - `Coin Price Tracker 1.0.0.exe` - Portable version (no installation required)
+
+2. Run the installer or portable executable
+
+3. Launch the app
 
 📖 **[Full Installation Guide](INSTALL.md)**
 
