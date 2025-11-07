@@ -32,8 +32,8 @@
 ### For Users (Installation)
 
 1. Download the appropriate DMG file:
-   - **`Coin Price Tracker-1.0.0-arm64.dmg`** - For Apple Silicon (M1/M2/M3/M4)
-   - **`Coin Price Tracker-1.0.0.dmg`** - For Intel Macs
+   - **[Download for Apple Silicon (M1/M2/M3/M4)](https://github.com/nhathuy7996/coin-price-tracker/releases/tag/macOS-silicon)** - `Coin Price Tracker-1.0.0-arm64.dmg`
+   - **[Download for Intel Macs](https://github.com/nhathuy7996/coin-price-tracker/releases/tag/macos-intel)** - `Coin Price Tracker-1.0.0.dmg`
 
 2. Open the DMG and drag the app to Applications
 
