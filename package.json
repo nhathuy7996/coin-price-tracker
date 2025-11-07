@@ -10,7 +10,9 @@
     "dev": "concurrently \"npm run watch\" \"wait-on dist/main.js && electron .\"",
     "pack": "npm run build && electron-builder --dir",
     "dist": "npm run build && electron-builder",
-    "dist:mac": "npm run build && electron-builder --mac"
+    "dist:mac": "npm run build && electron-builder --mac",
+    "dist:mas": "npm run build && electron-builder --mac mas",
+    "dist:mas-dev": "npm run build && electron-builder --mac mas-dev"
   },
   "keywords": [
     "electron",
@@ -32,7 +34,7 @@
     "axios": "^1.6.2"
   },
   "build": {
-    "appId": "com.coinpricetracker.app",
+    "appId": "com.gamedevtoi.coinpricetracker",
     "productName": "Coin Price Tracker",
     "files": [
       "dist/**/*",
@@ -44,6 +46,10 @@
     },
     "mac": {
       "category": "public.app-category.finance",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
       "target": [
         {
           "target": "dmg",
@@ -55,6 +61,19 @@
         }
       ],
       "darkModeSupport": true
+    },
+    "mas": {
+      "type": "distribution",
+      "category": "public.app-category.finance",
+      "hardenedRuntime": false,
+      "entitlements": "build/entitlements.mas.plist",
+      "entitlementsInherit": "build/entitlements.mas.inherit.plist",
+      "target": [
+        {
+          "target": "mas",
+          "arch": ["x64", "arm64"]
+        }
+      ]
     },
     "dmg": {
       "contents": [
