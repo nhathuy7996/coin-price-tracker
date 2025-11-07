@@ -12,7 +12,8 @@
     "dist": "npm run build && electron-builder",
     "dist:mac": "npm run build && electron-builder --mac",
     "dist:mas": "npm run build && electron-builder --mac mas",
-    "dist:mas-dev": "npm run build && electron-builder --mac mas-dev"
+    "dist:mas-dev": "npm run build && electron-builder --mac mas-dev",
+    "dist:win": "npm run build && electron-builder --win"
   },
   "keywords": [
     "electron",
@@ -95,6 +96,26 @@
         "width": 540,
         "height": 380
       }
+    },
+    "win": {
+      "icon": "assets/icon.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Coin Price Tracker"
     }
   }
 }
