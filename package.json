@@ -36,6 +36,7 @@
   "build": {
     "appId": "com.gamedevtoi.coinpricetracker",
     "productName": "Coin Price Tracker",
+    "icon": "assets/icon.png",
     "files": [
       "dist/**/*",
       "public/**/*",
@@ -45,6 +46,7 @@
       "output": "release"
     },
     "mac": {
+      "icon": "assets/icon.jpg",
       "category": "public.app-category.finance",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,

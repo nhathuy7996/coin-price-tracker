@@ -1,5 +1,7 @@
 # Coin Price Tracker
 
+![Coin Price Tracker Screenshot](assets/screenshot.png)
+
 🚀 A lightweight, always-on-top cryptocurrency price tracker for macOS.
 
 ![macOS](https://img.shields.io/badge/macOS-10.12+-blue.svg)
