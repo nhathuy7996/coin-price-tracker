@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background: transparent;
+      -webkit-app-region: drag;
+      user-select: none;
+    }
+
+    .settings-container {
+      width: 400px;
+      height: 350px;
+      background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+      border-radius: 15px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      color: white;
+      position: relative;
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .settings-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .close-btn {
+      background: #ff5f57;
+      border: none;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      -webkit-app-region: no-drag;
+    }
+
+    .close-btn:hover {
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      -webkit-app-region: no-drag;
+    }
+
+    .tab {
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.3s;
+    }
+
+    .tab:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .tab.active {
+      background: rgba(96, 165, 250, 0.3);
+      border: 1px solid rgba(96, 165, 250, 0.5);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .setting-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .setting-label {
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .setting-input {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: white;
+      font-size: 14px;
+      -webkit-app-region: no-drag;
+    }
+
+    .setting-input:focus {
+      outline: none;
+      border-color: rgba(96, 165, 250, 0.5);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.2);
+      outline: none;
+      -webkit-app-region: no-drag;
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #60a5fa;
+      cursor: pointer;
+    }
+
+    .opacity-value {
+      font-size: 12px;
+      text-align: right;
+      color: #60a5fa;
+    }
+
+    .search-results {
+      max-height: 180px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      margin-top: 10px;
+      -webkit-app-region: no-drag;
+    }
+
+    .search-results::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .search-results::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+
+    .search-results::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 3px;
+    }
+
+    .search-results::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .search-result-item {
+      padding: 12px;
+      cursor: pointer;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: background 0.2s;
+    }
+
+    .search-result-item:hover {
+      background: rgba(96, 165, 250, 0.2);
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-symbol {
+      font-weight: 600;
+      color: #60a5fa;
+    }
+
+    .search-result-name {
+      font-size: 11px;
+      opacity: 0.7;
+      margin-left: 8px;
+    }
+
+    .search-result-id {
+      font-size: 10px;
+      opacity: 0.5;
+      display: block;
+      margin-top: 4px;
+    }
+
+    .empty-state {
+      padding: 20px;
+      text-align: center;
+      opacity: 0.6;
+      font-size: 13px;
+    }
+
+    .btn-primary {
+      background: #60a5fa;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      color: white;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.3s;
+      -webkit-app-region: no-drag;
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background: #3b82f6;
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+  <div class="settings-container">
+    <div class="settings-header">
+      <div class="settings-title">⚙️ Settings</div>
+      <button class="close-btn" id="closeBtn">×</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" data-tab="general">General</button>
+      <button class="tab" data-tab="coins">Add Coins</button>
+    </div>
+
+    <!-- General Tab -->
+    <div class="tab-content active" id="general">
+      <div class="setting-item">
+        <label class="setting-label">Coin Symbol (e.g. BTC, ETH, SOL)</label>
+        <input type="text" class="setting-input" id="coinInput" placeholder="BTC" maxlength="10">
+      </div>
+
+      <div class="setting-item">
+        <label class="setting-label">Opacity</label>
+        <input type="range" id="opacityRange" min="30" max="100" value="90" step="5">
+        <div class="opacity-value" id="opacityValue">90%</div>
+      </div>
+
+      <button class="btn-primary" id="applyBtn">Apply Changes</button>
+    </div>
+
+    <!-- Add Coins Tab -->
+    <div class="tab-content" id="coins">
+      <div class="setting-item">
+        <label class="setting-label">Search for a coin</label>
+        <input type="text" class="setting-input" id="searchInput" placeholder="Enter coin name or symbol...">
+        <div class="search-results" id="searchResults">
+          <div class="empty-state">Type to search for coins...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="settings.js"></script>
+</body>
+</html>
